@@ -27,7 +27,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const client = axios.create({
-    baseURL: "https://mockend.com/kaanyillmazz/redlink/posts"
+    baseURL: "https://mockend.com/kaanyillmazz/BLink/posts"
 });
 
 //dummy placeholder links to show before posts are initialized from server

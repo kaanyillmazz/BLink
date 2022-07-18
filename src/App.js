@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import React from 'react';
+import {Grid} from '@mui/material'
+import {Divider} from '@mui/material'
+import {Box} from '@mui/material'
+import ReactDOM from 'react-dom/client';
+import './index.css';
 import './App.css';
+import LinkList from "./Components/LinkList";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={3} ml={1}>
+          <h1 style={{color: 'red'}}>RedLink</h1>
+        </Grid>
+      </Grid>
+      <Box mt={1} mb={2}>
+        <Divider/>
+      </Box>
+      <Box mt={1} mb={1}>
+        <Grid container spacing={0} alignItems="center" textAlign="center">
+          <Grid item xs={4}/>
+          <Grid item xs={4}>
+            <Divider variant="middle"/>
+          </Grid>
+          <Grid item xs={4}/>
+        </Grid>
+      </Box>
+      <Grid container spacing={0} display="flex" justifyContent="center">
+        <Grid item xs={0}>
+          <LinkList/>
+        </Grid>
+      </Grid>
     </div>
   );
 }

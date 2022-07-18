@@ -1,28 +1,8 @@
 import * as React from 'react';
-import axios from "axios";
-
-import List from '@mui/material/List';
-import {Pagination} from '@mui/material';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
-import {Box, Grid, Paper} from '@mui/material'
+import {Grid, Paper} from '@mui/material'
 import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import {IconButton} from '@mui/material'
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import {useRef} from "react";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import Stack from '@mui/material/Stack';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import NativeSelect from '@mui/material/NativeSelect';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import RemoveDialog from "./RemoveDialog";

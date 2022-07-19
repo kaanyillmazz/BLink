@@ -25,6 +25,7 @@ function AddLink(props) { //component for sending new links
 
     const [open, setOpen] = React.useState(false);
     const [name, setName] = React.useState("");
+    const [myPoints, setMyPoints] = React.useState(1);
     const [myUrl, setMyUrl] = React.useState("");
 
     const handleClickOpen = () => { setOpen(true); };
@@ -34,8 +35,8 @@ function AddLink(props) { //component for sending new links
     const handleAdd = () => { //handler for adding a link and then closing the dialog
         let title = name;
         let url = myUrl;
+        let points = myPoints;
         id++;
-        let points = 0;
         const article = {id: id, title: title, points: points, postURL: url, liked: false, disliked: false};
         dispatch(unshiftPosts(article));
         setOpen(false);
@@ -50,6 +51,10 @@ function AddLink(props) { //component for sending new links
     const handleChange = (event) => { //set the name of the link
         let text = event.target.value;
         setName(text);
+    };
+    const handlePointsChange = (event) => { //set the name of the link
+        let text = event.target.value;
+        setMyPoints(text);
     };
     const handleURLChange = (event) => { //set the url of the link (currently not working)
         let text = event.target.value;
@@ -73,6 +78,16 @@ function AddLink(props) { //component for sending new links
                     fullWidth
                     variant="standard"
                     onChange={handleChange}
+                />
+                <TextField
+                    margin="dense"
+                    id="points"
+                    label="Link points"
+                    type="number"
+                    value={myPoints}
+                    fullWidth
+                    variant="standard"
+                    onChange={handlePointsChange}
                 />
                 <TextField
                     onKeyDown={event => {

@@ -11,13 +11,16 @@ import RemoveDialog from "./RemoveDialog";
 import {setShow} from "../features/link/showSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {setAllPosts, setAPost} from "../features/link/postsSlice";
+import {useRef} from "react";
 
-let postAndIndex = function (post,index) {
+let postAndIndex = function (post, index) {
     this.post = post;
     this.index = index;
 }
 
 const MyListItem = (props) => {
+    const likeButton = useRef(null);
+    const dislikeButton = useRef(null);
     const dispatch = useDispatch();
     const show = useSelector((state) => state.show.value);
     const posts = useSelector((state) => state.posts.value);
@@ -25,11 +28,16 @@ const MyListItem = (props) => {
 
     const [open, setOpen] = React.useState(false);
 
-    const handleDialogOpen = () => { setOpen(true); };
-    const handleDialogClose = () => { setOpen(false);};
+    const handleDialogOpen = () => {
+        setOpen(true);
+    };
+    const handleDialogClose = () => {
+        setOpen(false);
+    };
     const handleDeleteDialog = () => {
         deleteHandler();
-        setOpen(false); };
+        setOpen(false);
+    };
 
     const handleFocusEnter = () => {
         dispatch(setShow());
@@ -48,8 +56,9 @@ const MyListItem = (props) => {
         const disliked = post.disliked;
         const postURL = post.postURL;
         let toSend;
-        if(!(post.liked)) {
-            if(!(post.disliked)) {
+        if (!(post.liked)) {
+            if (!(post.disliked)) {
+                likeButton.current.style.background = "lightBlue";
                 const article = {
                     id: id,
                     title: title,
@@ -58,14 +67,24 @@ const MyListItem = (props) => {
                     liked: true,
                     disliked: false
                 };
-                toSend = new postAndIndex(article,index);
+                toSend = new postAndIndex(article, index);
             } else {
-                const article = {id: id, title: title, points: points + 1, postURL: postURL, liked: false, disliked: false};
-                toSend = new postAndIndex(article,index);
+                dislikeButton.current.style.background = "lightGray";
+                const article = {
+                    id: id,
+                    title: title,
+                    points: points + 1,
+                    postURL: postURL,
+                    liked: false,
+                    disliked: false
+                };
+                toSend = new postAndIndex(article, index);
             }
 
             dispatch(setAPost(toSend));
-        } else {alert("Already Liked!")}
+        } else {
+            alert("Already Liked!")
+        }
 
     };
 
@@ -79,8 +98,9 @@ const MyListItem = (props) => {
         const disliked = post.disliked;
         const postURL = post.postURL;
         let toSend;
-        if(!(post.disliked)) {
-            if(!(post.liked)) {
+        if (!(post.disliked)) {
+            if (!(post.liked)) {
+                dislikeButton.current.style.background = "lightBlue";
                 const article = {
                     id: id,
                     title: title,
@@ -89,14 +109,24 @@ const MyListItem = (props) => {
                     liked: false,
                     disliked: true
                 };
-                toSend = new postAndIndex(article,index);
+                toSend = new postAndIndex(article, index);
             } else {
-                const article = {id: id, title: title, points: points - 1, postURL: postURL, liked: false, disliked: false};
-                toSend = new postAndIndex(article,index);
+                likeButton.current.style.background = "lightGray";
+                const article = {
+                    id: id,
+                    title: title,
+                    points: points - 1,
+                    postURL: postURL,
+                    liked: false,
+                    disliked: false
+                };
+                toSend = new postAndIndex(article, index);
             }
 
             dispatch(setAPost(toSend));
-        } else {alert("Already Disliked!")}
+        } else {
+            alert("Already Disliked!")
+        }
 
     };
 
@@ -114,13 +144,14 @@ const MyListItem = (props) => {
         ListItem0 =
             <ListItem alignItems="flex-start" onMouseEnter={handleFocusEnter} onMouseLeave={handleFocusLeave}>
                 <div>
-                    <Fab onClick={function () {
-                        likeHandler(); }}
+                    <Fab ref={likeButton} onClick={function () {
+                        likeHandler();
+                    }}
                          size="small"
                          style={{position: 'absolute', right: 0, bottom: 5, height: 20, width: 20, minHeight: 20}}>
                         <KeyboardArrowUpIcon/>
                     </Fab>
-                    <Fab onClick={function () {
+                    <Fab ref={dislikeButton} onClick={function () {
                         dislikeHandler();
                     }}
                          size="small"

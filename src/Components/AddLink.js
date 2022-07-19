@@ -29,7 +29,8 @@ function AddLink(props) { //component for sending new links
     const handleClickOpen = () => { setOpen(true); };
     const handleClose = () => { setOpen(false); };
 
-    const handleAddClose = () => { //handler for adding a link and then closing the dialog
+
+    const handleAdd = () => { //handler for adding a link and then closing the dialog
         let title = name;
         let url = myUrl;
         id++;
@@ -39,6 +40,12 @@ function AddLink(props) { //component for sending new links
         dispatch(unshiftPosts(article));
         console.log(posts);
         setOpen(false);
+    };
+    const handleAddClose = () => { //handler for adding a link and then closing the dialog
+       if(name === "" || myUrl === "") {
+           alert("Name and Url Cannot be Empty!");
+       } else
+           handleAdd();
     };
 
     const handleChange = (event) => { //set the name of the link

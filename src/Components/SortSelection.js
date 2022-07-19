@@ -5,17 +5,14 @@ import InputLabel from "@mui/material/InputLabel";
 import NativeSelect from "@mui/material/NativeSelect";
 import {useDispatch, useSelector} from "react-redux";
 import {setAllPosts, setAPost, sortPosts} from "../features/link/postsSlice";
+import {setSorting} from "../features/link/sortingSlice";
 
 let postHolderDefault = [];
 
 function SortSelection(props) {
     const posts = useSelector((state) => state.posts.value);
+    const sorting = useSelector((state) => state.sorting.value);
     const dispatch = useDispatch();
-
-    let sorting = props.sorting;
-    let setSorting = props.setSorting;
-
-
 
     //this is sorting component
     const handleChange = (event) => {
@@ -30,7 +27,7 @@ function SortSelection(props) {
             function comparator (a, b) { return a.points - b.points };
             dispatch(sortPosts(comparator));
         }
-        setSorting(value0);  //set the state to refresh frontend
+        dispatch(setSorting(value0));  //set the state to refresh frontend
     };
 
     return ( //return the component

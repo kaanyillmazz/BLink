@@ -11,9 +11,10 @@ import {Grid, IconButton, Paper} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import {useDispatch, useSelector} from "react-redux";
-import {setAllPosts, setAPost, unshiftPosts} from "../features/link/postsSlice";
+import {setAllPosts, setAPost, unshiftPosts, sortPosts} from "../features/link/postsSlice";
 
 function AddLink(props) { //component for sending new links
+    const sorting = useSelector((state) => state.sorting.value);
     const nextField = useRef(null);
     let id = props.id;
     const show = useSelector((state) => state.show.value);
@@ -39,6 +40,11 @@ function AddLink(props) { //component for sending new links
         id++;
         const article = {id: id, title: title, points: points, postURL: url, liked: false, disliked: false};
         dispatch(unshiftPosts(article));
+        if(sorting === "MostPoints") {
+            dispatch(sortPosts((function (a, b) { return b.points - a.points })))
+        } if(sorting === "LeastPoints") {
+            dispatch(sortPosts((function (a, b) { return a.points - b.points })))
+        }
         setOpen(false);
     };
     const handleAddClose = () => { //handler for adding a link and then closing the dialog

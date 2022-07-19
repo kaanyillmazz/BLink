@@ -132,7 +132,7 @@ function AddLink(props) { //component for sending new links
                             </IconButton>
                         </Grid>
                         <Grid item xs={6}>
-                            <h1><i style={{color: 'white'}}> Submit A</i> <i style={{color: 'orange'}}> Link</i></h1>
+                            <h1><i style={{color: "lightsteelblue"}}> Submit A</i> <i style={{color: 'orange'}}> Link</i></h1>
                         </Grid>
                     </Grid>
                 </Paper>

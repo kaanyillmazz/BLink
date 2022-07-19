@@ -22,7 +22,7 @@ const RemoveDialog = (props) => {
     let box;
     if (show) {
         box = <Box sx={{'& > :not(style)': {m: 1}}}>
-            <Fab size="small" color="secondary" aria-label="edit" style={{position: 'absolute'}}>
+            <Fab size="small" color="error" aria-label="edit" style={{position: 'absolute'}}>
                 <DeleteOutlineIcon onClick={handleDialogOpen}/>
             </Fab>
         </Box>

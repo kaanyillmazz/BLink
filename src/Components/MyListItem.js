@@ -108,19 +108,19 @@ const MyListItem = (props) => {
         ListItem0 =
             <ListItem alignItems="flex-start" onMouseEnter={handleFocusEnter} onMouseLeave={handleFocusLeave}>
                 <div>
-                    <Fab ref={likeButton} onClick={function () {
+                    <Fab color="warning" ref={likeButton} onClick={function () {
                         likeHandler();
                     }}
                          size="small"
                          style={{position: 'absolute', right: 0, bottom: 5, height: 20, width: 20, minHeight: 20}}>
-                        <KeyboardArrowUpIcon color="warning"/>
+                        <KeyboardArrowUpIcon color="error"/>
                     </Fab>
-                    <Fab ref={dislikeButton} onClick={function () {
+                    <Fab color="warning" ref={dislikeButton} onClick={function () {
                         dislikeHandler();
                     }}
                          size="small"
                          style={{position: 'absolute', right: 26, bottom: 5, height: 20, width: 20, minHeight: 20}}>
-                        <KeyboardArrowDownIcon color="warning"/>
+                        <KeyboardArrowDownIcon color="error"/>
                     </Fab>
                 </div>
                 <Paper variant="outlined" square style={{padding: "1px", marginRight: "10px"}}>
@@ -133,7 +133,7 @@ const MyListItem = (props) => {
                     </Grid>
                 </Paper>
                 <ListItemText
-                    primary={linkName}
+                    primary={<i style={{color: 'orange'}}>{linkName}</i>}
                     secondary={<React.Fragment>
                         {linkAdress}
                     </React.Fragment>}/>

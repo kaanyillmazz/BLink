@@ -21,20 +21,28 @@ function LinkList() {
     return (<div>
             <List sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
                 <AddLink id={++id}/>
-                <Grid item display="flex" justifyContent="center" minWidth={350}>
-                    <SortSelection/>
+                <Grid item container display="flex" justifyContent="center" minWidth={350}>
+                    <Grid item xs={12} display="flex" justifyContent="center" minWidth={350}>
+                        <SortSelection/>
+                    </Grid>
+                    <Grid item xs={12} sx={{borderBottom: "1px solid grey"}} display="flex" justifyContent="center">
+                        <MyListItem index={index}/>
+                    </Grid>
+                    <Grid item xs={12} sx={{borderBottom: "1px solid grey"}} display="flex" justifyContent="center">
+                        <MyListItem index={index + 1}/>
+                    </Grid>
+                    <Grid item xs={12} sx={{borderBottom: "1px solid grey"}} display="flex" justifyContent="center"
+                          minWidth={350}>
+                        <MyListItem index={index + 2}/>
+                    </Grid>
                 </Grid>
-                <MyListItem index={index}/>
-                <Divider variant="middle" component="li"/>
-                <MyListItem index={index + 1}/>
-                <Divider variant="middle" component="li"/>
-                <MyListItem index={index + 2}/>
             </List>
-            <Grid item display="flex" justifyContent="center">
+            <Grid item xs={12} display="flex" justifyContent="center">
                 <Paginator/>
             </Grid>
 
         </div>
     );
 }
+
 export default LinkList;

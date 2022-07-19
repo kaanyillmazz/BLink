@@ -13,6 +13,8 @@ import AddIcon from "@mui/icons-material/Add";
 import {useDispatch, useSelector} from "react-redux";
 import {setAllPosts, setAPost, unshiftPosts, sortPosts} from "../features/link/postsSlice";
 
+import Image from "../image1.jpg";
+
 function AddLink(props) { //component for sending new links
     const sorting = useSelector((state) => state.sorting.value);
     const nextField = useRef(null);
@@ -122,7 +124,7 @@ function AddLink(props) { //component for sending new links
 
         <Grid container spacing={1}>
             <Grid item xs={12} display="flex" justifyContent="center">
-                <Paper variant="outlined">
+                <Paper variant="outlined" sx={{backgroundImage: `url(${Image})`}}>
                     <Grid container spacing={0} alignItems="center" display="Flex" JustifyContent="Center">
                         <Grid item xs={4}>
                             <IconButton size="large">

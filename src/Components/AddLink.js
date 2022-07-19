@@ -14,6 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setAllPosts, setAPost, unshiftPosts} from "../features/link/postsSlice";
 
 function AddLink(props) { //component for sending new links
+    const nextField = useRef(null);
     let id = props.id;
     const show = useSelector((state) => state.show.value);
     const posts = useSelector((state) => state.posts.value);
@@ -36,9 +37,7 @@ function AddLink(props) { //component for sending new links
         id++;
         let points = 0;
         const article = {id: id, title: title, points: points, postURL: url, liked: false, disliked: false};
-        console.log(article);
         dispatch(unshiftPosts(article));
-        console.log(posts);
         setOpen(false);
     };
     const handleAddClose = () => { //handler for adding a link and then closing the dialog
@@ -58,7 +57,7 @@ function AddLink(props) { //component for sending new links
     };
 
     return (<div>
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open} onClose={handleClose} >
             <DialogTitle>Add a Link</DialogTitle>
             <DialogContent>
                 <DialogContentText>
@@ -76,6 +75,11 @@ function AddLink(props) { //component for sending new links
                     onChange={handleChange}
                 />
                 <TextField
+                    onKeyDown={event => {
+                        if(event.key === "Enter") {
+                            handleAddClose();
+                        }
+                    }}
                     margin="dense"
                     id="url"
                     label="URL"
@@ -83,6 +87,7 @@ function AddLink(props) { //component for sending new links
                     fullWidth
                     variant="standard"
                     value={myUrl}
+                    ref={nextField}
                     onChange={handleURLChange}
                 />
             </DialogContent>

@@ -25,6 +25,7 @@ function LinkList() {
 
     const paginateHandler = (event) => { //handles when a page number is clicked
         let page1 = parseInt(event.target.innerText);
+        console.log(event.target);
         setPage(page1);
         index = (((3 * page) - 3));
 

@@ -8,7 +8,7 @@ function Paginator(props) {
 
     return (
     <Stack spacing={2}>
-        <Pagination count={33} variant="outlined" color="secondary" page={page} onChange={paginateHandler}/>
+        <Pagination hideNextButton={true} hidePrevButton={true} count={33} variant="outlined" color="secondary" page={page} onChange={paginateHandler}/>
     </Stack>
     )
 }

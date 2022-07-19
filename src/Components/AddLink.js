@@ -10,10 +10,15 @@ import Button from "@mui/material/Button";
 import {Grid, IconButton, Paper} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
+import {useDispatch, useSelector} from "react-redux";
+import {setAllPosts, setAPost, unshiftPosts} from "../features/link/postsSlice";
+
 function AddLink(props) { //component for sending new links
     let id = props.id;
-    let postsHolder = props.postsHolder;
-    let setPosts = props.setPosts;
+    const show = useSelector((state) => state.show.value);
+    const posts = useSelector((state) => state.posts.value);
+    const dispatch = useDispatch();
+
 
     const textField = useRef(null);
 
@@ -30,8 +35,7 @@ function AddLink(props) { //component for sending new links
         let points = 0;
         const article = {id: id, title: title, points: points};
         console.log(article);
-        postsHolder.unshift(article);
-        setPosts(postsHolder);
+        dispatch(unshiftPosts(article));
         setOpen(false);
     };
 

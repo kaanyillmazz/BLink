@@ -7,16 +7,26 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import RemoveDialog from "./RemoveDialog";
 
+
+import {setShow} from "../features/link/showSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {setAllPosts, setAPost} from "../features/link/postsSlice";
+
+let postAndIndex = function (post,index) {
+    this.post = post;
+    this.index = index;
+}
+
 const MyListItem = (props) => {
+    const dispatch = useDispatch();
+    const show = useSelector((state) => state.show.value);
+    const posts = useSelector((state) => state.posts.value);
+
     let index = props.index;
-    let posts = props.posts;
-    let setPosts = props.setPosts;
-    let client = props.client;
-    let postsHolder = props.postsHolder;
 
     //get the link according to index
     const [open, setOpen] = React.useState(false);
-    const [show, setShow] = React.useState(false);
+
     const handleDialogOpen = () => { setOpen(true); };
     const handleDialogClose = () => { setOpen(false);};
     const handleDeleteDialog = () => {
@@ -25,10 +35,10 @@ const MyListItem = (props) => {
 
 
     const handleFocusEnter = () => {
-        setShow(true)
+        dispatch(setShow());
     };
     const handleFocusLeave = () => {
-        setShow(false);
+        dispatch(setShow());
     };
 
     //handle likes (mocking database so no real changes on server)
@@ -38,30 +48,26 @@ const MyListItem = (props) => {
         const points = post.points;
         const title = post.title;
         const article = {id: id, title: title, points: points + 1};
-        const response = await client.put(`/${id}`, article);
-        postsHolder[index] = article;
-        setPosts(postsHolder);
+        let toSend = new postAndIndex(article,index);
+        dispatch(setAPost(toSend));
     };
 
     //handle dislikes (mocking database so no real changes on server)
     const dislikeHandler = async () => {
-        const id = posts[index].id;
-        const points = posts[index].points
-        const title = posts[index].title
+        let post = posts[index];
+        const id = post.id;
+        const points = post.points;
+        const title = post.title;
         const article = {id: id, title: title, points: points - 1};
-        const response = await client.put(`/${id}`, article);
-        postsHolder[index] = article;
-        setPosts(postsHolder);
+        let toSend = new postAndIndex(article,index);
+        dispatch(setAPost(toSend));
 
     };
 
     //handle delete operation (mocking database so no real changes on server)
     const deleteHandler = async () => {
-        const id = posts[index].id;
-        const response = await client.delete(`/${id}`);
         let value0 = posts[index];
-        postsHolder = postsHolder.filter(item => item !== value0) //filter out selected link from array
-        setPosts(postsHolder);
+        dispatch(setAllPosts(posts.filter(item => item !== value0))); //filter out selected link from array
     };
 
     let ListItem0;

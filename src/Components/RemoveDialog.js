@@ -7,14 +7,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 
+import {useDispatch, useSelector} from "react-redux";
+
 const RemoveDialog = (props) => {
-    let show = props.show;
+
+    const show = useSelector((state) => state.show.value)
+
     let handleDialogOpen = props.handleDialogOpen;
     let handleDialogClose = props.handleDialogClose;
     let open = props.open;
     let handleDeleteDialog = props.handleDeleteDialog;
-
-
 
     //disappearing delete box shows when you hover on a link
     let box;

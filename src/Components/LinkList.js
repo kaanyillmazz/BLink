@@ -8,40 +8,26 @@ import AddLink from "./AddLink";
 import Paginator from "./Paginator";
 import MyListItem from "./MyListItem"
 
+import {useDispatch, useSelector} from "react-redux";
+import {setAllPosts, setAPost} from "../features/link/postsSlice";
+
 const client = axios.create({
     baseURL: "https://mockend.com/kaanyillmazz/BLink/posts"
 });
-
 //dummy placeholder links to show before posts are initialized from server
-let obj = function (id, title, points) {
-    this.id = id;
-    this.title = title;
-    this.points = points;
-}
-let obj1 = new obj(1, "Loading...", "0");
-let obj2 = new obj(2, "Loading...", "0");
-let obj3 = new obj(3, "Loading...", "0");
+
 
 //this array holds links
-let postsHolder = [obj1, obj2, obj3];
-let postHolderDefault = [obj1, obj2, obj3];
+
 
 function LinkList() {
+    const dispatch = useDispatch();
+
+    const posts = useSelector((state) => state.posts.value);
     //sorting state
     const [sorting, setSorting] = React.useState("Default");
 
-    const [posts, setPosts] = React.useState(postsHolder);
 
-    //get the links from the server
-    React.useEffect(() => {
-        async function getPosts() {
-            const response = await client.get("");
-            postsHolder = response.data;
-            setPosts(response.data);
-        }
-
-        getPosts();
-    }, []);
 
     let id = 100; //id required for creating new links
 
@@ -57,13 +43,13 @@ function LinkList() {
     };
     return (<div>
             <List sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
-                <AddLink postsHolder={postsHolder} id={++id} setPosts={setPosts}/>
-                <SortSelection sorting={sorting} setSorting={setSorting} postsHolder={postsHolder} postHolderDefault={postHolderDefault} />
-                <MyListItem index={index} posts={posts} postsHolder={postsHolder} client={client} setPosts={setPosts}/>
+                <AddLink id={++id}/>
+                <SortSelection sorting={sorting} setSorting={setSorting}  />
+                <MyListItem index={index} posts={posts} client={client}/>
                 <Divider variant="inset" component="li"/>
-                <MyListItem index={index + 1} posts={posts} postsHolder={postsHolder} client={client} setPosts={setPosts}/>
+                <MyListItem index={index + 1} posts={posts} client={client}/>
                 <Divider variant="inset" component="li"/>
-                <MyListItem index={index + 2} posts={posts} postsHolder={postsHolder} client={client} setPosts={setPosts}/>
+                <MyListItem index={index + 2} posts={posts} client={client}/>
             </List>
             <Paginator page={page} paginateHandler={paginateHandler}/>
         </div>

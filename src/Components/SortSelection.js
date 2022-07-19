@@ -3,29 +3,33 @@ import {Box} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import NativeSelect from "@mui/material/NativeSelect";
+import {useDispatch, useSelector} from "react-redux";
+import {setAllPosts, setAPost, sortPosts} from "../features/link/postsSlice";
+
+let postHolderDefault = [];
 
 function SortSelection(props) {
+    const posts = useSelector((state) => state.posts.value);
+    const dispatch = useDispatch();
+
     let sorting = props.sorting;
     let setSorting = props.setSorting;
-    let postsHolder = props.postsHolder;
-    let postHolderDefault = props.postHolderDefault;
+
+
 
     //this is sorting component
     const handleChange = (event) => {
         let value = event.target.value.toString();
         let value0 = value.toString();
-        if (sorting === "Default") {
-            //save default sort (currently not working)
-            postHolderDefault = JSON.parse(JSON.stringify(postsHolder)); }
         if (value0 === "MostPoints") {
             //sort from the most points
-            postsHolder.sort(function (a, b) { return b.points - a.points });
+            dispatch(sortPosts((function (a, b) { return b.points - a.points })));
         } else if (value0 === "LeastPoints") {
+            console.log("least")
             //sort from the least points
-            postsHolder.sort(function (a, b) { return a.points - b.points });
-        } else if (value0 === "Default") {
-            //get back the default sort
-            postsHolder = JSON.parse(JSON.stringify(postHolderDefault)); }
+            function comparator (a, b) { return a.points - b.points };
+            dispatch(sortPosts(comparator));
+        }
         setSorting(value0);  //set the state to refresh frontend
     };
 

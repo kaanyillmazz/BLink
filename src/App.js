@@ -6,34 +6,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import './App.css';
 import LinkList from "./Components/LinkList";
-import axios from "axios";
-import {useDispatch, useSelector} from "react-redux";
-import {setAllPosts, setAPost} from "./features/link/postsSlice";
-
-const client = axios.create({
-    baseURL: "https://mockend.com/kaanyillmazz/BLink/posts"
-});
 
 function App() {
-    const dispatch = useDispatch();
-    const posts = useSelector((state) => state);
-    //get the links from the server
-    React.useEffect(() => {
-        async function getPosts() {
-            const response = await client.get("");
-            dispatch(setAllPosts(response.data));
-        }
-
-        getPosts();
-    }, []);
-
-
-
   return (
     <div className="App">
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={3} ml={1}>
-          <h1 style={{color: 'red'}}>RedLink</h1>
+          <h1 style={{color: 'darkslateblue'}}>BLink</h1>
         </Grid>
       </Grid>
       <Box mt={1} mb={2}>

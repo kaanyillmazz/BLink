@@ -11,6 +11,7 @@ import {Provider} from 'react-redux'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+window.document.title="BLink"
 root.render(
   <Provider store={store}>
     <App />

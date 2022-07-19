@@ -1,6 +1,0 @@
-{
-
-  "Post": { "title": { "loremWord": {} },"points": { "int": { "min": 0, "max": 50 } } , "post": { "belongsTo": "Post"} }
-
-}
-

@@ -20,22 +20,24 @@ function AddLink(props) { //component for sending new links
     const dispatch = useDispatch();
 
 
-    const textField = useRef(null);
+    //const textField = useRef(null);
 
     const [open, setOpen] = React.useState(false);
     const [name, setName] = React.useState("");
-    const [url, setUrl] = React.useState("");
+    const [myUrl, setMyUrl] = React.useState("");
 
     const handleClickOpen = () => { setOpen(true); };
     const handleClose = () => { setOpen(false); };
 
     const handleAddClose = () => { //handler for adding a link and then closing the dialog
         let title = name;
+        let url = myUrl;
         id++;
         let points = 0;
-        const article = {id: id, title: title, points: points};
+        const article = {id: id, title: title, points: points, postURL: url};
         console.log(article);
         dispatch(unshiftPosts(article));
+        console.log(posts);
         setOpen(false);
     };
 
@@ -45,7 +47,7 @@ function AddLink(props) { //component for sending new links
     };
     const handleURLChange = (event) => { //set the url of the link (currently not working)
         let text = event.target.value;
-        setUrl(text);
+        setMyUrl(text);
     };
 
     return (<div>
@@ -64,7 +66,6 @@ function AddLink(props) { //component for sending new links
                     value={name}
                     fullWidth
                     variant="standard"
-                    ref={textField}
                     onChange={handleChange}
                 />
                 <TextField
@@ -75,7 +76,7 @@ function AddLink(props) { //component for sending new links
                     type="url"
                     fullWidth
                     variant="standard"
-                    value={url}
+                    value={myUrl}
                     onChange={handleURLChange}
                 />
             </DialogContent>
@@ -95,7 +96,7 @@ function AddLink(props) { //component for sending new links
                             </IconButton>
                         </Grid>
                         <Grid item xs={6}>
-                            <h1>Submit A <i style={{color: 'red'}}> Link</i></h1>
+                            <h1>Submit A <i style={{color: 'darkblue'}}> Link</i></h1>
                         </Grid>
                     </Grid>
                 </Paper>

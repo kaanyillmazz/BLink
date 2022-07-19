@@ -21,10 +21,8 @@ const MyListItem = (props) => {
     const dispatch = useDispatch();
     const show = useSelector((state) => state.show.value);
     const posts = useSelector((state) => state.posts.value);
-
     let index = props.index;
 
-    //get the link according to index
     const [open, setOpen] = React.useState(false);
 
     const handleDialogOpen = () => { setOpen(true); };
@@ -32,7 +30,6 @@ const MyListItem = (props) => {
     const handleDeleteDialog = () => {
         deleteHandler();
         setOpen(false); };
-
 
     const handleFocusEnter = () => {
         dispatch(setShow());
@@ -47,7 +44,8 @@ const MyListItem = (props) => {
         const id = post.id;
         const points = post.points;
         const title = post.title;
-        const article = {id: id, title: title, points: points + 1};
+        const postURL = post.postURL;
+        const article = {id: id, title: title, points: points + 1, postURL: postURL};
         let toSend = new postAndIndex(article,index);
         dispatch(setAPost(toSend));
     };
@@ -58,7 +56,8 @@ const MyListItem = (props) => {
         const id = post.id;
         const points = post.points;
         const title = post.title;
-        const article = {id: id, title: title, points: points - 1};
+        const postURL = post.postURL;
+        const article = {id: id, title: title, points: points - 1, postURL: postURL};
         let toSend = new postAndIndex(article,index);
         dispatch(setAPost(toSend));
 
@@ -73,7 +72,7 @@ const MyListItem = (props) => {
     let ListItem0;
     if (posts[index]) { //return this if posts exists
         let linkName = posts[index].title; //get the name of link
-        let linkAdress = "https://" + linkName + ".com"  //generate link (because there is no field available in database)
+        let linkAdress = posts[index].postURL;
         let pointValue = posts[index].points;
         ListItem0 =
             <ListItem alignItems="flex-start" onMouseEnter={handleFocusEnter} onMouseLeave={handleFocusLeave}>

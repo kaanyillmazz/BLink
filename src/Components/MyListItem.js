@@ -83,7 +83,7 @@ const MyListItem = (props) => {
 
             dispatch(setAPost(toSend));
         } else {
-            alert("Already Liked!")
+            alert("Already Liked!");
         }
 
     };

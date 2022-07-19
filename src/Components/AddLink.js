@@ -76,7 +76,6 @@ function AddLink(props) { //component for sending new links
                     onChange={handleChange}
                 />
                 <TextField
-                    autoFocus
                     margin="dense"
                     id="url"
                     label="URL"

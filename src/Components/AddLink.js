@@ -46,6 +46,8 @@ function AddLink(props) { //component for sending new links
             dispatch(sortPosts((function (a, b) { return a.points - b.points })))
         }
         setOpen(false);
+        setMyUrl("");
+        setName("");
     };
     const handleAddClose = () => { //handler for adding a link and then closing the dialog
        if(name === "" || myUrl === "") {

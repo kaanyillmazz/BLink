@@ -56,9 +56,7 @@ const MyListItem = (props) => {
         const disliked = post.disliked;
         const postURL = post.postURL;
         let toSend;
-        if (!(post.liked)) {
-            if (!(post.disliked)) {
-                likeButton.current.style.background = "lightBlue";
+        likeButton.current.style.background = "lightBlue";
                 const article = {
                     id: id,
                     title: title,
@@ -68,24 +66,7 @@ const MyListItem = (props) => {
                     disliked: false
                 };
                 toSend = new postAndIndex(article, index);
-            } else {
-                dislikeButton.current.style.background = "lightGray";
-                const article = {
-                    id: id,
-                    title: title,
-                    points: points + 1,
-                    postURL: postURL,
-                    liked: false,
-                    disliked: false
-                };
-                toSend = new postAndIndex(article, index);
-            }
-
-            dispatch(setAPost(toSend));
-        } else {
-            alert("Already Liked!");
-        }
-
+                dispatch(setAPost(toSend));
     };
 
     //handle dislikes (mocking database so no real changes on server)
@@ -98,36 +79,19 @@ const MyListItem = (props) => {
         const disliked = post.disliked;
         const postURL = post.postURL;
         let toSend;
-        if (!(post.disliked)) {
-            if (!(post.liked)) {
-                dislikeButton.current.style.background = "lightBlue";
-                const article = {
-                    id: id,
-                    title: title,
-                    points: points - 1,
-                    postURL: postURL,
-                    liked: false,
-                    disliked: true
-                };
-                toSend = new postAndIndex(article, index);
-            } else {
-                likeButton.current.style.background = "lightGray";
-                const article = {
-                    id: id,
-                    title: title,
-                    points: points - 1,
-                    postURL: postURL,
-                    liked: false,
-                    disliked: false
-                };
-                toSend = new postAndIndex(article, index);
-            }
-
+        if (post.points > 0) {
+            dislikeButton.current.style.background = "lightBlue";
+            const article = {
+                id: id,
+                title: title,
+                points: points - 1,
+                postURL: postURL,
+                liked: false,
+                disliked: true
+            };
+            toSend = new postAndIndex(article, index);
             dispatch(setAPost(toSend));
-        } else {
-            alert("Already Disliked!")
         }
-
     };
 
     //handle delete operation (mocking database so no real changes on server)

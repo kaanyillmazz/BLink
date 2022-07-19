@@ -14,6 +14,7 @@ function SortSelection(props) {
     const sorting = useSelector((state) => state.sorting.value);
     const dispatch = useDispatch();
 
+
     //this is sorting component
     const handleChange = (event) => {
         let value = event.target.value.toString();
@@ -30,8 +31,9 @@ function SortSelection(props) {
         dispatch(setSorting(value0));  //set the state to refresh frontend
     };
 
-    return ( //return the component
-        <Box mt={1} sx={{minWidth: 120}}>
+let mySorter;
+    if(posts.length > 1) {
+         mySorter = <Box mt={1} sx={{minWidth: 150}}>
             <FormControl fullWidth>
                 <InputLabel variant="standard"> Sort </InputLabel>
                 <NativeSelect value={sorting} onChange={handleChange}>
@@ -40,6 +42,9 @@ function SortSelection(props) {
                 </NativeSelect>
             </FormControl>
         </Box>
-    );
+    }
+
+    return mySorter;
+
 }
 export default SortSelection;

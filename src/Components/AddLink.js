@@ -35,7 +35,7 @@ function AddLink(props) { //component for sending new links
         let url = myUrl;
         id++;
         let points = 0;
-        const article = {id: id, title: title, points: points, postURL: url};
+        const article = {id: id, title: title, points: points, postURL: url, liked: false, disliked: false};
         console.log(article);
         dispatch(unshiftPosts(article));
         console.log(posts);

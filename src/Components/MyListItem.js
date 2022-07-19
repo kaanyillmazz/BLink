@@ -43,11 +43,30 @@ const MyListItem = (props) => {
         let post = posts[index];
         const id = post.id;
         const points = post.points;
-        const title = post.title;
+        const title = post.title
+        const liked = post.liked;
+        const disliked = post.disliked;
         const postURL = post.postURL;
-        const article = {id: id, title: title, points: points + 1, postURL: postURL};
-        let toSend = new postAndIndex(article,index);
-        dispatch(setAPost(toSend));
+        let toSend;
+        if(!(post.liked)) {
+            if(!(post.disliked)) {
+                const article = {
+                    id: id,
+                    title: title,
+                    points: points + 1,
+                    postURL: postURL,
+                    liked: true,
+                    disliked: false
+                };
+                toSend = new postAndIndex(article,index);
+            } else {
+                const article = {id: id, title: title, points: points + 1, postURL: postURL, liked: false, disliked: false};
+                toSend = new postAndIndex(article,index);
+            }
+
+            dispatch(setAPost(toSend));
+        } else {alert("Already Liked!")}
+
     };
 
     //handle dislikes (mocking database so no real changes on server)
@@ -55,11 +74,29 @@ const MyListItem = (props) => {
         let post = posts[index];
         const id = post.id;
         const points = post.points;
-        const title = post.title;
+        const title = post.title
+        const liked = post.liked;
+        const disliked = post.disliked;
         const postURL = post.postURL;
-        const article = {id: id, title: title, points: points - 1, postURL: postURL};
-        let toSend = new postAndIndex(article,index);
-        dispatch(setAPost(toSend));
+        let toSend;
+        if(!(post.disliked)) {
+            if(!(post.liked)) {
+                const article = {
+                    id: id,
+                    title: title,
+                    points: points - 1,
+                    postURL: postURL,
+                    liked: false,
+                    disliked: true
+                };
+                toSend = new postAndIndex(article,index);
+            } else {
+                const article = {id: id, title: title, points: points - 1, postURL: postURL, liked: false, disliked: false};
+                toSend = new postAndIndex(article,index);
+            }
+
+            dispatch(setAPost(toSend));
+        } else {alert("Already Disliked!")}
 
     };
 

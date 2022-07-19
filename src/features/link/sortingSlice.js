@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    value: "Default",
+    value: "MostPoints",
 }
 export const sortingSlice = createSlice({
     name: 'sorting', initialState, reducers: {

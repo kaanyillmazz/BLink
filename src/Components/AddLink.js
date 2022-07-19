@@ -128,11 +128,11 @@ function AddLink(props) { //component for sending new links
                     <Grid container spacing={0} alignItems="center" display="Flex" JustifyContent="Center">
                         <Grid item xs={4}>
                             <IconButton size="large">
-                                <AddIcon fontSize="large" onClick={handleClickOpen}/>
+                                <AddIcon color="warning" fontSize="large" onClick={handleClickOpen}/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={6}>
-                            <h1>Submit A <i style={{color: 'darkblue'}}> Link</i></h1>
+                            <h1><i style={{color: 'white'}}> Submit A</i> <i style={{color: 'orange'}}> Link</i></h1>
                         </Grid>
                     </Grid>
                 </Paper>

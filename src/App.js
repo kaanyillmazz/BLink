@@ -11,16 +11,11 @@ function App() {
     <div className="App">
       <Grid container spacing={2}>
         <Grid item xs={2}>
-          <h1 style={{color: 'darkslateblue'}}>BLink</h1>
+          <h1 style={{color: 'orange'}}>BLink</h1>
         </Grid>
       </Grid>
         <Divider/>
       <Box mt={1} mb={1}>
-        <Grid container spacing={0} display="flex" justifyContent="center">
-          <Grid item xs={4}>
-            <Divider variant="middle"/>
-          </Grid>
-        </Grid>
       </Box>
       <Grid container spacing={0} sx={{justifyContent: "center", display: "flex"}}>
         <Grid item>

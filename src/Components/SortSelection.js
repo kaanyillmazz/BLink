@@ -35,8 +35,8 @@ let mySorter;
     if(posts.length > 1) {
          mySorter = <Box mt={1} sx={{minWidth: 150}}>
             <FormControl fullWidth>
-                <InputLabel variant="standard"> Sort </InputLabel>
-                <NativeSelect value={sorting} onChange={handleChange}>
+                <InputLabel variant="standard"> <i style={{color: 'orange'}}>sort</i> </InputLabel>
+                <NativeSelect color="warning" value={sorting} onChange={handleChange}>
                     <option value="MostPoints">Most Points</option>
                     <option value="LeastPoints">Least Points</option>
                 </NativeSelect>

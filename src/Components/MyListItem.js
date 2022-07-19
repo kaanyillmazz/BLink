@@ -113,22 +113,22 @@ const MyListItem = (props) => {
                     }}
                          size="small"
                          style={{position: 'absolute', right: 0, bottom: 5, height: 20, width: 20, minHeight: 20}}>
-                        <KeyboardArrowUpIcon/>
+                        <KeyboardArrowUpIcon color="warning"/>
                     </Fab>
                     <Fab ref={dislikeButton} onClick={function () {
                         dislikeHandler();
                     }}
                          size="small"
                          style={{position: 'absolute', right: 26, bottom: 5, height: 20, width: 20, minHeight: 20}}>
-                        <KeyboardArrowDownIcon/>
+                        <KeyboardArrowDownIcon color="warning"/>
                     </Fab>
                 </div>
                 <Paper variant="outlined" square style={{padding: "1px", marginRight: "10px"}}>
                     <Grid container textAlign="center" justifyContent="center"
                           style={{minHeight: 80, maxHeight: 80, minWidth: 80}}>
                         <Grid item>
-                            <h1 style={{fontSize: "medium"}}>{pointValue}</h1>
-                            <h1 style={{fontSize: "medium"}}>Points</h1>
+                            <h1 style={{fontSize: "medium"}}><i style={{color: 'orangered'}}>{pointValue}</i></h1>
+                            <h1 style={{fontSize: "medium"}}><i style={{color: 'orange'}}>Points</i></h1>
                         </Grid>
                     </Grid>
                 </Paper>
